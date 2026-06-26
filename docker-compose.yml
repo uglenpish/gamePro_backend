@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: gamespro_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: quest_games
+      POSTGRES_USER: quest_dsterlin
+      POSTGRES_PASSWORD: quest_games_dev
+    ports:
+      - "5434:5432"
+    volumes:
+      - gamespro_postgres_data:/var/lib/postgresql/data
+
+volumes:
+  gamespro_postgres_data:

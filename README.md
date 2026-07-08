@@ -1,98 +1,401 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# GamesPro Backend
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Backend проекта **"Осколки Реальности"**.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Сейчас backend отвечает за базовую серверную часть проекта: NestJS API, PostgreSQL, Prisma и модуль авторизации. По мере развития проекта сюда будет переноситься ядро Narrative Engine: сцены, состояние игры, условия, эффекты, сохранения, квесты, инвентарь и боевая система.
 
-## Description
+## Стек
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+- Node.js 22
+- NestJS 11
+- TypeScript
+- PostgreSQL 16
+- Prisma 7
+- Docker Compose
+- Jest
 
-## Project setup
+## Требования
+
+Перед запуском должны быть установлены:
+
+- Node.js `22.22.3` или совместимая версия Node 22
+- npm
+- Docker
+- Docker Compose
+
+Проверка:
 
 ```bash
-$ npm install
+node -v
+npm -v
+docker --version
+docker compose version
 ```
 
-## Compile and run the project
+Если используется `nvm`, рекомендуется закрепить версию Node:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+nvm use 22.22.3
+nvm alias default 22.22.3
+node -v
 ```
 
-## Run tests
+Если VS Code продолжает видеть старую версию Node, перезапусти терминал VS Code или выполни `Developer: Reload Window`.
+
+## Быстрый старт
+
+Все команды ниже выполняются из папки `backend`.
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cd backend
 ```
 
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+### 1. Установить зависимости
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm install
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+### 2. Подготовить `.env`
 
-## Resources
+В корне папки `backend` должен быть файл `.env`.
 
-Check out a few resources that may come in handy when working with NestJS:
+Минимальный пример для локального запуска с текущим `docker-compose.yml`:
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+```env
+NODE_ENV=development
 
-## Support
+DATABASE_URL="postgresql://quest_dsterlin:quest_games_dev@localhost:5434/quest_games?schema=public"
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+PORT=3000
 
-## Stay in touch
+JWT_ACCESS_SECRET="replace_with_local_access_secret"
+JWT_REFRESH_SECRET="replace_with_local_refresh_secret"
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+JWT_ACCESS_EXPIRES="15m"
+JWT_REFRESH_EXPIRES="7d"
 
-## License
+FRONTEND_URL="http://localhost:5173"
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+REDIS_HOST="localhost"
+REDIS_PORT=6379
+```
+
+Важно:
+
+- `DATABASE_URL` используется Prisma и `PrismaService`.
+- `JWT_ACCESS_SECRET` нужен для генерации access token.
+- `FRONTEND_URL` понадобится для настройки CORS.
+- Redis пока указан на будущее и сейчас не обязателен для запуска текущего backend.
+
+### 3. Запустить PostgreSQL
+
+```bash
+docker compose up -d
+```
+
+Проверить контейнер:
+
+```bash
+docker compose ps
+```
+
+Остановить базу:
+
+```bash
+docker compose down
+```
+
+Остановить базу и удалить локальные данные:
+
+```bash
+docker compose down -v
+```
+
+Команда с `-v` удаляет Docker volume `gamespro_postgres_data`. Используй её только если локальные данные больше не нужны.
+
+### 4. Проверить Prisma-схему
+
+```bash
+npx prisma validate
+```
+
+Ожидаемый результат:
+
+```text
+The schema at prisma/schema.prisma is valid
+```
+
+### 5. Сгенерировать Prisma Client
+
+```bash
+npx prisma generate
+```
+
+Prisma Client нужен приложению для работы с базой данных.
+
+### 6. Применить миграции
+
+Для локальной разработки:
+
+```bash
+npx prisma migrate dev
+```
+
+Эта команда:
+
+- читает `prisma/schema.prisma`;
+- применяет миграции из `prisma/migrations`;
+- обновляет локальную базу данных;
+- при необходимости регенерирует Prisma Client.
+
+Проверить состояние миграций:
+
+```bash
+npx prisma migrate status
+```
+
+Если локальная база сломана или миграции разъехались, и данные не нужны:
+
+```bash
+npx prisma migrate reset
+```
+
+`migrate reset` полностью очищает локальную базу и применяет миграции заново.
+
+### 7. Запустить backend
+
+Режим разработки с hot reload:
+
+```bash
+npm run start:dev
+```
+
+Обычный запуск:
+
+```bash
+npm run start
+```
+
+После запуска API доступно по адресу:
+
+```text
+http://localhost:3000
+```
+
+Если в `.env` указан другой `PORT`, используй его.
+
+## Полная последовательность запуска с нуля
+
+```bash
+cd backend
+nvm use 22.22.3
+npm install
+docker compose up -d
+npx prisma validate
+npx prisma generate
+npx prisma migrate dev
+npm run start:dev
+```
+
+## Проверка API
+
+Сейчас доступны базовые auth endpoints.
+
+### Регистрация
+
+```bash
+curl -X POST http://localhost:3000/auth/register \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "player@example.com",
+    "name": "Player",
+    "password": "password123",
+    "confirmPassword": "password123"
+  }'
+```
+
+### Логин
+
+```bash
+curl -X POST http://localhost:3000/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{
+    "email": "player@example.com",
+    "password": "password123"
+  }'
+```
+
+## Prisma
+
+Основные файлы:
+
+- `prisma/schema.prisma` - Prisma-схема.
+- `prisma/migrations/` - SQL-миграции.
+- `prisma.config.ts` - конфигурация Prisma CLI.
+- `src/infrastructure/prisma/prisma.service.ts` - подключение Prisma к NestJS.
+
+Полезные команды:
+
+```bash
+# Проверить схему
+npx prisma validate
+
+# Сгенерировать Prisma Client
+npx prisma generate
+
+# Создать и применить новую миграцию после изменения schema.prisma
+npx prisma migrate dev --name migration_name
+
+# Проверить состояние миграций
+npx prisma migrate status
+
+# Открыть Prisma Studio
+npx prisma studio
+```
+
+Принцип работы:
+
+1. Меняем `prisma/schema.prisma`.
+2. Создаём миграцию через `npx prisma migrate dev --name ...`.
+3. Проверяем SQL в `prisma/migrations`.
+4. Запускаем приложение.
+
+Не рекомендуется менять структуру базы вручную в PostgreSQL, если это изменение должно попасть в проект. Такие изменения нужно оформлять через Prisma migrations.
+
+## Скрипты npm
+
+```bash
+# Сборка проекта
+npm run build
+
+# Запуск в development-режиме
+npm run start:dev
+
+# Запуск собранного приложения
+npm run start:prod
+
+# Линтинг
+npm run lint
+
+# Unit-тесты
+npm run test
+
+# E2E-тесты
+npm run test:e2e
+
+# Coverage
+npm run test:cov
+```
+
+Перед `npm run start:prod` нужно собрать проект:
+
+```bash
+npm run build
+npm run start:prod
+```
+
+## Тесты
+
+Unit-тесты:
+
+```bash
+npm run test
+```
+
+E2E-тесты:
+
+```bash
+npm run test:e2e
+```
+
+Сейчас тестовая инфраструктура требует донастройки под абсолютные импорты вида `src/...`. Если Jest падает с ошибкой `Cannot find module 'src/...'`, нужно добавить mapping для `src/*` в Jest-конфигурацию.
+
+## Типовые проблемы
+
+### Prisma падает с `ERR_REQUIRE_ESM`
+
+Проверь версию Node:
+
+```bash
+node -v
+```
+
+Для этого проекта рекомендуется Node `22.22.3`. На старых версиях Node 22 Prisma CLI может падать на несовместимости CommonJS/ESM.
+
+### Приложение падает с `DATABASE_URL is not defined`
+
+Проверь, что:
+
+- файл `.env` находится в папке `backend`;
+- в `.env` есть `DATABASE_URL`;
+- приложение запускается из папки `backend`.
+
+### Backend не может подключиться к PostgreSQL
+
+Проверь контейнер:
+
+```bash
+docker compose ps
+```
+
+Проверь, что порт в `DATABASE_URL` совпадает с `docker-compose.yml`.
+
+В текущем docker-compose PostgreSQL доступен на локальном порту `5434`.
+
+### Миграция не применяется на непустую базу
+
+Если миграция добавляет обязательное поле без default-значения, PostgreSQL может отказать в применении на таблицу с данными.
+
+Для локальной разработки, если данные не важны:
+
+```bash
+npx prisma migrate reset
+```
+
+Для важной базы нужно писать безопасную миграцию вручную: добавить nullable-поле, заполнить значения, затем сделать поле обязательным.
+
+## Рекомендуемый порядок ежедневной работы
+
+```bash
+cd backend
+nvm use 22.22.3
+docker compose up -d
+npx prisma migrate status
+npm run start:dev
+```
+
+Если менялась Prisma-схема:
+
+```bash
+npx prisma validate
+npx prisma migrate dev --name migration_name
+npm run start:dev
+```
+
+Если менялись зависимости:
+
+```bash
+npm install
+npm run build
+```
+
+## Роль backend в проекте
+
+Backend должен постепенно стать ядром Narrative Engine.
+
+Планируемые зоны ответственности:
+
+- импорт контента из JSON;
+- хранение сцен и игрового мира;
+- обработка условий;
+- применение эффектов;
+- хранение состояния игрока;
+- сохранения;
+- квесты;
+- инвентарь;
+- отношения с NPC;
+- боевая система;
+- API для Vue-клиента.
+
+Twine используется только как редактор сюжета. Игровая логика должна находиться в backend.

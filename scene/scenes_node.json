@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "0.1.0",
+  "gameId": "shards_of_reality",
+  "locale": "ru",
+  "metadata": {
+    "title": "осколки реальности",
+    "description": "Imported from Twine",
+    "contentVersion": "1.0.0"
+  },
+  "startSceneId": "l1_013_combat",
+  "scenes": [
+    {
+      "id": "l1_013_combat",
+      "title": "l1_013_combat",
+      "type": "story",
+      "tags": [],
+      "content": [],
+      "choices": []
+    },
+    {
+      "id": "l1_016_no_combat",
+      "title": "l1_016_no_combat",
+      "type": "story",
+      "tags": [],
+      "content": [],
+      "choices": []
+    },
+    {
+      "id": "l1_017",
+      "title": "l1_017",
+      "type": "story",
+      "tags": [],
+      "content": [],
+      "choices": []
+    },
+    {
+      "id": " l1_018",
+      "title": " l1_018",
+      "type": "story",
+      "tags": [],
+      "content": [],
+      "choices": []
+    },
+    {
+      "id": "l1_026_войти через_дверь",
+      "title": "l1_026_войти через_дверь",
+      "type": "story",
+      "tags": [],
+      "content": [],
+      "choices": []
+    },
+    {
+      "id": "l1_027_поднятся_по_пожарной",
+      "title": "l1_027_поднятся_по_пожарной",
+      "type": "story",
+      "tags": [],
+      "content": [],
+      "choices": []
+    },
+    {
+      "id": "l1_028_войти_на_базу",
+      "title": "l1_028_войти_на_базу",
+      "type": "story",
+      "tags": [],
+      "content": [],
+      "choices": []
+    }
+  ]
+}

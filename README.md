@@ -6,7 +6,7 @@ Backend проекта **"Осколки Реальности"**.
 
 ## Стек
 
-- Node.js 22
+- Node.js 22+
 - NestJS 11
 - TypeScript
 - PostgreSQL 16
@@ -18,7 +18,7 @@ Backend проекта **"Осколки Реальности"**.
 
 Перед запуском должны быть установлены:
 
-- Node.js `22.22.3` или совместимая версия Node 22
+- Node.js `22.0.0` или новее
 - npm
 - Docker
 - Docker Compose
@@ -32,11 +32,11 @@ docker --version
 docker compose version
 ```
 
-Если используется `nvm`, рекомендуется закрепить версию Node:
+Если используется `nvm`, рекомендуется использовать актуальную установленную версию Node 22 или новее:
 
 ```bash
-nvm use 22.22.3
-nvm alias default 22.22.3
+nvm use 22
+nvm alias default 22
 node -v
 ```
 
@@ -189,7 +189,7 @@ http://localhost:3000
 
 ```bash
 cd backend
-nvm use 22.22.3
+nvm use 22
 npm install
 docker compose up -d
 npx prisma validate
@@ -321,7 +321,7 @@ npm run test:e2e
 node -v
 ```
 
-Для этого проекта рекомендуется Node `22.22.3`. На старых версиях Node 22 Prisma CLI может падать на несовместимости CommonJS/ESM.
+Для этого проекта требуется Node `22.0.0` или новее. Если используется `nvm`, переключись на установленную версию Node 22+.
 
 ### Приложение падает с `DATABASE_URL is not defined`
 
@@ -359,7 +359,7 @@ npx prisma migrate reset
 
 ```bash
 cd backend
-nvm use 22.22.3
+nvm use 22
 docker compose up -d
 npx prisma migrate status
 npm run start:dev
